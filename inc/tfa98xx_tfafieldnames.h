@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (C) 2014-2020 NXP Semiconductors, All Rights Reserved.
- * Copyright 2021 GOODIX 
+ * Copyright 2021 GOODIX
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -62,6 +62,9 @@ typedef struct TfaIrqName {
 #define TFA1_BF_SWPROFIL 0x8045    /*!< profile save   */
 #define TFA1_BF_SWVSTEP  0x80a5    /*!< vstep save  */
 
+#define TFA1_BF_TDMNBCK     -1
+#define TFA1_BF_TDMSSIZE     -1
+
 /* missing 'common' defs break the build */
 #define TFA2_BF_CFSM -1
 
@@ -69,8 +72,8 @@ typedef struct TfaIrqName {
 /* MTP access uses registers
  *  defs are derived from corresponding bitfield names as used in the BF macros
  */
-#define MTPKEY2  	MTPK		/* unlock key2 MTPK */
-#define MTP0     	MTPOTC 	/* MTP data */
+#define MTPKEY2	MTPK		/* unlock key2 MTPK */
+#define MTP0	MTPOTC	/* MTP data */
 #define MTP_CONTROL CIMTP	/* copy i2c to mtp */
 
 /* interrupt enable register uses HW name in TFA2 */

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (C) 2014-2020 NXP Semiconductors, All Rights Reserved.
- * Copyright 2021 GOODIX 
+ * Copyright 2021 GOODIX
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -34,18 +34,18 @@ struct tfa_device;
  * hw/sw feature bit settings in MTP
  */
 enum featureSupport {
-        supportNotSet,  /**< default means not set yet */
-        supportNo,      /**< no support */
-        supportYes      /**< supported */
+	supportNotSet,  /**< default means not set yet */
+	supportNo,      /**< no support */
+	supportYes      /**< supported */
 };
 /*
  * supported Digital Audio Interfaces bitmap
  */
 enum Tfa98xx_DAI {
-                Tfa98xx_DAI_I2S  =  0x01, /**< I2S only */
-                Tfa98xx_DAI_TDM  =  0x02, /**< TDM, I2S */
-                Tfa98xx_DAI_PDM  =  0x04, /**< PDM  */
-        };
+		Tfa98xx_DAI_I2S  =  0x01, /**< I2S only */
+		Tfa98xx_DAI_TDM  =  0x02, /**< TDM, I2S */
+		Tfa98xx_DAI_PDM  =  0x04, /**< PDM  */
+	};
 
 /*
  * device ops function structure
@@ -67,13 +67,13 @@ struct tfa_device_ops {
 	enum Tfa98xx_Error (*phase_shift)(struct tfa_device *tfa); /**< Control for PWM phase shift  */
 	int (*set_swprof)(struct tfa_device *tfa, unsigned short new_value); /**< Set the sw profile in the struct and the hw register */
 	int (*get_swprof)(struct tfa_device *tfa); /**< Get the sw profile from the hw register */
-	int(*set_swvstep)(struct tfa_device *tfa, unsigned short new_value); /**< Set the sw vstep in the struct and the hw register */
-	int(*get_swvstep)(struct tfa_device *tfa); /**< Get the sw vstep from the hw register */
-	int(*get_mtpb)(struct tfa_device *tfa); /**< get status of MTB busy bit*/
+	int (*set_swvstep)(struct tfa_device *tfa, unsigned short new_value); /**< Set the sw vstep in the struct and the hw register */
+	int (*get_swvstep)(struct tfa_device *tfa); /**< Get the sw vstep from the hw register */
+	int (*get_mtpb)(struct tfa_device *tfa); /**< get status of MTB busy bit*/
 	enum Tfa98xx_Error (*set_mute)(struct tfa_device *tfa, int mute); /**< set mute */
 	enum Tfa98xx_Error (*faim_protect)(struct tfa_device *tfa, int state); /**< Protect FAIM from being corrupted  */
-	enum Tfa98xx_Error(*set_osc_powerdown)(struct tfa_device *tfa, int state); /**< Allow to change internal osc. gating settings */
-	enum Tfa98xx_Error(*update_lpm)(struct tfa_device *tfa, int state); /**< Allow to change lowpowermode settings */
+	enum Tfa98xx_Error (*set_osc_powerdown)(struct tfa_device *tfa, int state); /**< Allow to change internal osc. gating settings */
+	enum Tfa98xx_Error (*update_lpm)(struct tfa_device *tfa, int state); /**< Allow to change lowpowermode settings */
     int (*tfa_set_bitfield)(struct tfa_device* tfa, uint16_t bitfield, uint16_t value);
     enum Tfa98xx_Error (*tfa_status)(struct tfa_device *tfa);	
 };
@@ -86,20 +86,20 @@ struct tfa_device_ops {
  *
  */
 enum tfa_state {
-        TFA_STATE_UNKNOWN,      /**< unknown or invalid */
-        TFA_STATE_POWERDOWN,    /**< PLL in powerdown, Algo is up/warm */
-        TFA_STATE_INIT_HW,      /**< load I2C/PLL hardware setting (~wait2srcsettings) */
-        TFA_STATE_INIT_CF,      /**< coolflux HW access possible (~initcf) */
-        TFA_STATE_INIT_FW,      /**< DSP framework active (~patch loaded) */
-        TFA_STATE_OPERATING,    /**< Amp and Algo running */
-        TFA_STATE_FAULT,        /**< An alarm or error occurred */
-        TFA_STATE_RESET,        /**< I2C reset and ACS set */
-        /* --sticky state modifiers-- */
-        TFA_STATE_MUTE=0x10,         /**< Algo & Amp mute */
-        TFA_STATE_UNMUTE=0x20,       /**< Algo & Amp unmute */
-        TFA_STATE_CLOCK_ALWAYS=0x40, /**< PLL connect to internal oscillator */
-        TFA_STATE_CLOCK_AUDIO=0x80,  /**< PLL connect to audio clock (BCK/FS) */
-        TFA_STATE_LOW_POWER=0x100,   /**< lowest possible power state */
+	TFA_STATE_UNKNOWN,      /**< unknown or invalid */
+	TFA_STATE_POWERDOWN,    /**< PLL in powerdown, Algo is up/warm */
+	TFA_STATE_INIT_HW,      /**< load I2C/PLL hardware setting (~wait2srcsettings) */
+	TFA_STATE_INIT_CF,      /**< coolflux HW access possible (~initcf) */
+	TFA_STATE_INIT_FW,      /**< DSP framework active (~patch loaded) */
+	TFA_STATE_OPERATING,    /**< Amp and Algo running */
+	TFA_STATE_FAULT,        /**< An alarm or error occurred */
+	TFA_STATE_RESET,        /**< I2C reset and ACS set */
+	/* --sticky state modifiers-- */
+        TFA_STATE_MUTE = 0x10,         /**< Algo & Amp mute */
+        TFA_STATE_UNMUTE = 0x20,       /**< Algo & Amp unmute */
+        TFA_STATE_CLOCK_ALWAYS = 0x40, /**< PLL connect to internal oscillator */
+        TFA_STATE_CLOCK_AUDIO = 0x80,  /**< PLL connect to audio clock (BCK/FS) */
+        TFA_STATE_LOW_POWER = 0x100,   /**< lowest possible power state */
 };
 
 /**
@@ -111,7 +111,7 @@ struct tfa_device {
 	int dev_idx;			/**< device container index */
 	int in_use;
 	int buffer_size;		/**< lowest level max buffer size */
-	int has_msg; 			/**< support direct dsp messaging */
+	int has_msg;			/**< support direct dsp messaging */
 	int dynamicTDMmode; /**tracking dynamic TDM setting from alsa input stream*/
 	int bitwidth;       /**bitwdith from alsa input stream*/
 	unsigned char slave_address; /**< I2C slave address (not shifted) */
@@ -145,7 +145,7 @@ struct tfa_device {
 	int sync_iv_delay; /**< synchronize I/V delay at cold start */
 	int is_probus_device; /**< probus device: device without internal DSP */
 	int advance_keys_handling;
-	unsigned int rate; 
+	unsigned int rate;
 	int needs_reset; /**< add the reset trigger for SetAlgoParams and SetMBDrc commands */
 	struct kmem_cache *cachep;	/**< Memory allocator handle */
 	char fw_itf_ver[4];          /* Firmware ITF version */
@@ -188,8 +188,8 @@ int tfa_dev_probe(int slave, struct tfa_device *tfa);
  *  @param vstep the selected vstep to use
  *  @return tfa_error enum
  */
-enum tfa_error tfa_dev_start(struct tfa_device *tfa, int profile, int vstep);
 
+enum tfa_error tfa_dev_start(struct tfa_device *tfa, int next_profile, int vstep);
 
 /**
  * Stop audio for this instance as gracefully as possible.
@@ -223,7 +223,7 @@ enum tfa_error tfa_dev_stop(struct tfa_device *tfa);
  *  @param state struct = desired device state after function return
  *  @return tfa_error enum
  */
-enum tfa_error tfa_dev_set_state(struct tfa_device *tfa, enum tfa_state state,int is_calibration);
+enum tfa_error tfa_dev_set_state(struct tfa_device *tfa, enum tfa_state state, int is_calibration);
 
 /**
  * Retrieve the current state of this instance in an active way.
@@ -320,4 +320,3 @@ void tfa_irq_init(struct tfa_device *tfa);
 int tfa_irq_report(struct tfa_device *tfa);
 
 #endif /* __TFA_DEVICE_H__ */
-

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (C) 2014-2020 NXP Semiconductors, All Rights Reserved.
- * Copyright 2021 GOODIX 
+ * Copyright 2021 GOODIX
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -250,7 +250,7 @@ TfaProfileList_t *tfaContGet1stProfList(TfaContainer_t *cont);
  * @param prof is the pointer to the profile list
  * @return profile list pointer
  */
-TfaProfileList_t* tfaContNextProfile(TfaProfileList_t *prof);
+TfaProfileList_t *tfaContNextProfile(TfaProfileList_t *prof);
 
 /**
  * Return the pointer to the first livedata in a list from the tfaContainer
@@ -264,7 +264,7 @@ TfaLiveDataList_t *tfaContGet1stLiveDataList(TfaContainer_t *cont);
  * @param livedata_idx is the pointer to the livedata list
  * @return livedata list pointer
  */
-TfaLiveDataList_t* tfaContNextLiveData(TfaLiveDataList_t *livedata_idx);
+TfaLiveDataList_t *tfaContNextLiveData(TfaLiveDataList_t *livedata_idx);
 
 /**
  * Write a bit field
@@ -339,12 +339,11 @@ void tfa_get_sw_features_from_cnt(struct tfa_device *tfa, int sw_feature_registe
  */
 enum Tfa98xx_Error tfa98xx_factory_trimmer(struct tfa_device *tfa);
 
-/**
+ /**
  * Control for PWM phase shift 
  * @param tfa the device struct pointer
  */
  enum Tfa98xx_Error tfa98xx_set_phase_shift(struct tfa_device *tfa);
- 
 
 /**
  * Search for filters settings and if found then write them to the device
